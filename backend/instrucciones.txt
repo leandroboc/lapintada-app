@@ -1,0 +1,73 @@
+# Resumen del Proyecto y Estado Actual para Asistente de IA
+
+## 1. Objetivo del Proyecto
+
+Crear un chatbot de IA local para una empresa. El chatbot debe responder preguntas basándose únicamente en la información proporcionada en documentos de texto (`.txt`).
+
+**Tecnologías clave:**
+- **Backend:** Python con FastAPI.
+- **IA Local:** Ollama con el modelo `gemma:2b`.
+- **Lógica RAG (Retrieval-Augmented Generation):** LangChain.
+- **Base de Datos Vectorial:** ChromaDB (en memoria por ahora).
+- **Embeddings:** `all-MiniLM-L6-v2`.
+
+## 2. Arquitectura y Archivos
+
+- `c:\Users\LEO\Documents\GitHub\NO-SE-USA\backend\main.py`: Contiene TODA la lógica de la IA. Actualmente está modificado para funcionar como un script simple de prueba, no como un servidor FastAPI.
+- `c:\Users\LEO\Documents\GitHub\NO-SE-USA\backend\requirements.txt`: Contiene todas las dependencias de Python necesarias.
+- `c:\Users\LEO\Documents\GitHub\NO-SE-USA\data\info_empresa.txt`: Es el documento de texto con la información que la IA debe usar como contexto.
+- `c:\Users\LEO\Documents\GitHub\NO-SE-USA\backend\.venv`: El entorno virtual de Python.
+
+## 3. El Problema Fundamental (Bloqueo Actual)
+
+El proyecto está completamente bloqueado debido a una **instalación de Python corrupta en el sistema operativo (Windows)**.
+
+- El comando `python` no es reconocido por el sistema.
+- El comando `py` (lanzador de Python) funciona de forma intermitente, pero es insuficiente.
+- `pip` (el gestor de paquetes) falla silenciosamente: se ejecuta sin errores pero no instala las librerías en el entorno virtual.
+- Como resultado, cualquier intento de ejecutar un script de Python que dependa de librerías externas (`langchain`, `fastapi`, etc.) falla.
+
+**Hemos intentado todo para solucionarlo (recrear el entorno virtual, reinstalar dependencias, etc.), pero el problema raíz está en la configuración de Python del sistema, algo que no se puede arreglar con comandos.**
+
+## 4. Estado del Código (`main.py`)
+
+Para poder verificar que la lógica de la IA es correcta, se ha modificado `main.py`. **Ya no es un servidor FastAPI.** Ahora es un script que, al ejecutarse, realiza los siguientes pasos:
+1. Carga los documentos de la carpeta `data`.
+2. Los procesa y crea una base de datos vectorial en memoria.
+3. Configura la cadena RAG con el modelo `gemma:2b` de Ollama.
+4. Ejecuta dos preguntas de prueba:
+    - Una cuya respuesta está en `info_empresa.txt` ("¿Cuál es el horario de atención?").
+    - Una cuya respuesta NO está en el contexto ("¿De qué color es el cielo?").
+5. Imprime los resultados en la consola.
+
+Esto permite probar toda la cadena de IA sin depender de un entorno virtual funcional o un servidor.
+
+## 5. **INSTRUCCIONES PARA LA PRÓXIMA IA (Pasos a Seguir)**
+
+**NO INTENTES EJECUTAR NINGÚN CÓDIGO HASTA COMPLETAR EL PASO 1.**
+
+**Paso 1: Reparar la Instalación de Python (OBLIGATORIO)**
+- El usuario debe desinstalar por completo todas las versiones de Python de su sistema.
+- Luego, debe descargar e instalar la última versión de Python desde `python.org`.
+- **CRÍTICO:** Durante la instalación, debe asegurarse de marcar la casilla que dice **"Add Python to PATH"**.
+- Para verificar, abre una **NUEVA** terminal y ejecuta `python --version` y `pip --version`. Ambos comandos deben funcionar y mostrar una versión.
+
+**Paso 2: Recrear el Entorno de Python desde Cero**
+- En la terminal, navega a `c:\Users\LEO\Documents\GitHub\NO-SE-USA\backend`.
+- Ejecuta `Remove-Item -Recurse -Force -Path .\.venv` para asegurarte de que no queden restos del entorno anterior.
+- Ejecuta `python -m venv .venv` para crear un entorno virtual limpio.
+- Ejecuta `.venv\Scripts\activate` para activarlo.
+- Ejecuta `pip install -r requirements.txt` para instalar todas las dependencias.
+
+**Paso 3: Validar la Lógica de la IA**
+- Con el entorno activado, ejecuta `python main.py`.
+- **Resultado esperado:** El script se ejecutará y mostrará en la consola las respuestas a las dos preguntas. La primera debe ser el horario de atención y la segunda debe ser "No tengo la información...". Si esto funciona, la lógica de la IA es correcta.
+
+**Paso 4: Restaurar el Servidor FastAPI**
+- Una vez validada la lógica, el contenido de `main.py` debe ser reemplazado por el código original del servidor FastAPI. (El código se puede encontrar en el historial de la conversación o se puede pedir que se regenere).
+- El objetivo es tener un endpoint `/chat` que reciba una pregunta en formato JSON y devuelva la respuesta de la IA.
+
+**Paso 5: Lanzar y Probar el Servidor**
+- Con el entorno activado, ejecuta `uvicorn main:app --reload`.
+- El servidor debería iniciarse en `http://127.0.0.1:8000`.
+- Usa un script de prueba (como `test_api.py`, que también está en el historial) o una herramienta como Postman para enviar una petición POST a `http://127.0.0.1:8000/chat` y verificar la respuesta final.

@@ -43,8 +43,8 @@ export default function Navbar() {
           </div>
           
           <div className="hidden md:flex items-center space-x-4">
-              <a href="/choferes/login" className="text-pintada-green hover:text-pintada-gold px-3 py-2 text-xs font-semibold border border-pintada-green rounded-full hover:border-pintada-gold transition-all duration-300">
-                Portal Empleados
+              <a href="/login" className="text-pintada-green hover:text-pintada-gold px-3 py-2 text-xs font-semibold border border-pintada-green rounded-full hover:border-pintada-gold transition-all duration-300">
+                ADMINISTRACION
               </a>
           </div>
 
@@ -81,11 +81,8 @@ export default function Navbar() {
               <a href="#contacto" className="text-gray-700 hover:text-libertador-blue block px-3 py-2 rounded-md text-base font-medium">
                 Contacto
               </a>
-              <a href="/choferes/login" className="text-gray-700 hover:text-libertador-blue block px-3 py-2 rounded-md text-base font-medium">
-                Portal Recibos
-              </a>
-              <a href="/login" className="bg-libertador-blue text-white hover:bg-libertador-blue-hover block px-3 py-2 rounded-md text-base font-medium text-center">
-                Panel Admin
+              <a href="/login" className="text-gray-700 hover:text-libertador-blue block px-3 py-2 rounded-md text-base font-medium">
+                ADMINISTRACION
               </a>
             </div>
           </div>

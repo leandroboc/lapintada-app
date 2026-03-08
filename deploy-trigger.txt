@@ -1,0 +1,1 @@
+Forzar redeploy: Next.js actualizado a 15.5.7 y lock regenerado.

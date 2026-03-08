@@ -1,0 +1,122 @@
+INFORME DEL SISTEMA - TRANSPORTES LIBERTADOR
+
+Resumen Ejecutivo
+- Plataforma web para distribución de recibos de sueldo y horarios, portal de empleados/choferes, panel administrativo, avisos/notificaciones y verificación con QR.
+- Reduce costos operativos, elimina papel, ofrece trazabilidad y mejora la comunicación interna.
+
+Alcance
+- Empresas de transporte y logística, administración de personal, RR.HH. y choferes.
+- Entrega digital de documentación (PDF), confirmación de recibido, y verificación externa.
+
+Tecnología
+- Frontend/Backend: Next.js 15 (App Router) y TypeScript.
+- Estilos: Tailwind CSS.
+- Base de datos: MySQL.
+- Utilidades: pdf-lib para informes y QRCode para verificación.
+
+Módulos
+1) Portal de Choferes
+- Login por DNI y contraseña.
+- Listado y descarga de recibos (PDF) y horarios.
+- Confirmación de recibido (acknowledged) por recibo.
+- Notificaciones/Avisos con contador de no leídos y marca de lectura.
+
+2) Panel Administrativo
+- Gestión de empleados: alta/edición/consulta.
+- Gestión de archivos: subida y asignación de recibos/horarios, descarga, filtros.
+- Avisos: envío a todos o a un empleado específico, expiración opcional, activar/desactivar y edición.
+- Estadísticas: totales de empleados, recibos, horarios; últimos registros; recibos confirmados.
+
+3) Verificación QR
+- Escaneo de QR en recibos para validar origen y estado.
+- Endpoint público de verificación, retorna estado, empleado y fecha de emisión.
+
+4) Página Empresarial
+- Landing corporativa: Hero, Servicios, Nosotros, Contacto.
+- Acceso rápido al Panel Admin y al Portal de Choferes.
+
+Funcionalidades Detalladas
+- Subida de PDFs y almacenamiento en MySQL con metadatos.
+- Descarga directa de recibos/horarios desde portal de empleados.
+- Confirmación de recibido para trazabilidad.
+- Avisos dirigidos (empleado específico) o masivos (todos) con expiración.
+- Estadísticas operativas y de uso.
+- Autenticación básica para Admin y Empleados/Choferes.
+
+Endpoints Principales (App Router)
+- /api/recibos
+  * GET: lista por usuario y descarga con query `download_id`.
+  * PATCH: marca recibido (`acknowledged`) o reasigna.
+- /api/horarios
+  * GET: lista por usuario y descarga con `download_id`.
+- /api/avisos
+  * GET: `?usuarioId=` para chofer, `?admin=1` para admin.
+  * POST: crea aviso con `audiencia` ('todos'|'usuario'), `usuario_id`, `expires_at`.
+- /api/avisos/[id]
+  * PATCH: editar título, mensaje, `activo`, `expires_at`.
+- /api/avisos/read
+  * POST: marca aviso como leído para un usuario.
+- /api/auth/login
+  * POST: login para Admin (email o DNI y contraseña).
+- /api/auth/empleado-login
+  * POST: login para Empleado/Chofer (DNI y contraseña).
+- /api/verify
+  * GET: verifica QR de recibos, retorna estado y datos de emisión.
+- /api/stats
+  * GET: totales y últimos registros.
+- /api/setup
+  * GET: crea tablas iniciales y usuario de ejemplo (si habilitado por entorno).
+- /api/informe
+  * GET: genera y descarga PDF del informe comercial del sistema.
+
+Flujos Operativos
+- Empleado/Chofer: login → ve y descarga recibos/horarios → confirma recibo → lee avisos.
+- Admin: login → gestiona empleados → sube/gestiona recibos/horarios → envía avisos → consulta estadísticas.
+- Verificación: tercero escanea QR del PDF → `api/verify` valida y retorna estado.
+
+Base de Datos (tablas clave)
+- usuarios: id, nombre, apellido, email, dni_admin, password, rol, fechas.
+- recibos: id, usuario_id, nombre_archivo, mime_type, size, archivo, fecha_subida, acknowledged (opcional).
+- horarios: id, usuario_id, nombre_archivo, mime_type, size, archivo, fecha_subida.
+- avisos: id, titulo, mensaje, audiencia, usuario_id, creado_por, created_at, activo, expires_at.
+- avisos_leidos: aviso_id, usuario_id, read_at.
+
+Seguridad y Recomendaciones
+- Producción: contraseñas hasheadas (bcrypt), tokens JWT, roles y permisos.
+- Validación de tamaño/MIME de archivos subidos.
+- Auditoría para operaciones críticas (alta/baja/edición, avisos).
+- Variables de entorno: DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, QR_SECRET, ALLOW_DB_SETUP.
+
+Beneficios para Empresas
+- Eliminación del papel y logística de entrega física.
+- Entrega inmediata y verificación externa mediante QR.
+- Comunicación dirigida y masiva con seguimiento de lectura.
+- Trazabilidad y métricas para RR.HH.
+
+Página Empresarial (Landing)
+- Presentación de servicios, misión, y datos de contacto.
+- Navegación clara y accesos al portal de empleados y panel administrativo.
+
+Capturas Sugeridas (para material comercial)
+- Home corporativa con navbar y CTA.
+- Portal de Choferes: header, cards de Recibos/Horarios, badge de avisos.
+- Listado de Recibos: descarga y estado “Recibido”.
+- Panel Admin – Avisos: formulario y listado con activar/editar.
+- Verificación QR: página de estado con detalles.
+
+Despliegue y Operación
+- Desarrollo: `npm run dev` (por defecto en puerto 3000; si está ocupado usa 3001).
+- Construcción: `npm run build` y `npm run start` para producción.
+- Entorno: configurar variables de DB y `QR_SECRET`.
+- Setup: habilitar `ALLOW_DB_SETUP=true` y visitar `/api/setup` para crear tablas.
+
+Limitaciones actuales y Roadmap
+- Contraseñas en texto plano en entorno de demo: migrar a bcrypt.
+- Autenticación por token simple: migrar a JWT.
+- Avisos: agregar borrado definitivo y búsqueda/paginación.
+- Tiempo real: polling o SSE/WebSocket para avisos.
+- Panel de logs y métricas avanzadas.
+
+Contacto
+- Este sistema puede adaptarse a la identidad y necesidades de cada empresa.
+- Se ofrece integración con sistemas internos y soporte de despliegue.

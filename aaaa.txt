@@ -1,0 +1,95 @@
+00:24:34.016 Running build in Washington, D.C., USA (East) – iad1
+00:24:34.017 Build machine configuration: 2 cores, 8 GB
+00:24:34.143 Cloning github.com/leandroboc/libertador-app (Branch: main, Commit: 014773d)
+00:24:35.547 Cloning completed: 1.404s
+00:24:35.821 Restored build cache from previous deployment (C2Rb6Yeu6h8qcqBt4q25hhanAxQn)
+00:24:36.468 Running "vercel build"
+00:24:36.858 Vercel CLI 48.9.2
+00:24:37.177 Running "install" command: `npm install`...
+00:24:40.496 
+00:24:40.497 up to date, audited 746 packages in 3s
+00:24:40.498 
+00:24:40.498 180 packages are looking for funding
+00:24:40.498   run `npm fund` for details
+00:24:40.562 
+00:24:40.562 1 critical severity vulnerability
+00:24:40.563 
+00:24:40.563 To address all issues, run:
+00:24:40.563   npm audit fix --force
+00:24:40.564 
+00:24:40.564 Run `npm audit` for details.
+00:24:40.597 Detected Next.js version: 15.1.7
+00:24:40.598 Running "npm run build"
+00:24:40.712 
+00:24:40.713 > transportes-libertador-next@0.1.0 build
+00:24:40.713 > next build
+00:24:40.713 
+00:24:41.472    ▲ Next.js 15.1.7
+00:24:41.473 
+00:24:41.528    Creating an optimized production build ...
+00:24:49.219  ✓ Compiled successfully
+00:24:49.223    Linting and checking validity of types ...
+00:24:54.073 
+00:24:54.080 Failed to compile.
+00:24:54.081 
+00:24:54.081 ./app/api/auth/login/route.ts
+00:24:54.082 2:8  Error: 'bcrypt' is defined but never used.  @typescript-eslint/no-unused-vars
+00:24:54.082 31:27  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.082 45:23  Error: '_' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+00:24:54.082 
+00:24:54.083 ./app/api/empleados/route.ts
+00:24:54.083 11:27  Error: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
+00:24:54.083 50:22  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.084 
+00:24:54.084 ./app/api/horarios/route.ts
+00:24:54.086 68:22  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.086 
+00:24:54.086 ./app/api/recibos/route.ts
+00:24:54.087 68:22  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.087 
+00:24:54.087 ./app/api/stats/route.ts
+00:24:54.088 11:27  Error: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
+00:24:54.088 39:32  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.088 40:28  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.089 41:30  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.092 42:42  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.093 43:44  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.093 
+00:24:54.093 ./app/choferes/login/page.tsx
+00:24:54.093 37:14  Error: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+00:24:54.094 49:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+00:24:54.094 102:11  Error: Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+00:24:54.095 
+00:24:54.095 ./app/choferes/page.tsx
+00:24:54.095 17:15  Error: 'parsedUser' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+00:24:54.095 19:16  Error: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+00:24:54.096 29:9  Error: 'handleLogin' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+00:24:54.096 
+00:24:54.096 ./app/login/page.tsx
+00:24:54.097 75:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+00:24:54.097 171:11  Error: Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+00:24:54.097 
+00:24:54.097 ./app/page.tsx
+00:24:54.098 3:10  Error: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars
+00:24:54.098 41:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+00:24:54.098 
+00:24:54.099 ./components/AboutSection.tsx
+00:24:54.099 37:30  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+00:24:54.099 37:48  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+00:24:54.100 
+00:24:54.100 ./components/Navbar.tsx
+00:24:54.102 15:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+00:24:54.102 
+00:24:54.103 ./components/PWAInstallPrompt.tsx
+00:24:54.103 18:48  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+00:24:54.103 
+00:24:54.103 ./components/dashboard/EmpleadosSection.tsx
+00:24:54.104 29:6  Warning: React Hook useEffect has a missing dependency: 'fetchEmpleados'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+00:24:54.104 73:14  Error: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+00:24:54.105 98:16  Error: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+00:24:54.111 
+00:24:54.112 ./components/dashboard/StatsSection.tsx
+00:24:54.112 17:6  Warning: React Hook useEffect has a missing dependency: 'fetchStats'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+00:24:54.112 
+00:24:54.112 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+00:24:54.133 Error: Command "npm run build" exited with 1

@@ -16,9 +16,9 @@ export default function Navbar() {
               <Image 
                 src="/LA PINTADA - LP.png" 
                 alt="La Pintada Eventos" 
-                width={200} 
-                height={60}
-                className="h-12 w-auto object-contain"
+                width={150} 
+                height={45}
+                className="h-10 w-auto object-contain"
                 priority
               />
             </div>

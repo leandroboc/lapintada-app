@@ -29,9 +29,9 @@ export default function HeroSection() {
             <Image
               src="/LA PINTADA.png"
               alt="Quinta La Pintada"
-              width={600}
-              height={300}
-              className="w-full max-w-3xl h-auto drop-shadow-2xl"
+              width={400}
+              height={200}
+              className="w-full max-w-md h-auto drop-shadow-2xl"
               priority
             />
           </div>

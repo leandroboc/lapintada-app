@@ -49,9 +49,16 @@ export default function LoginPage() {
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-2xl shadow-xl border border-gray-200">
         {/* Header */}
         <div className="text-center">
-          <div className="flex justify-center mb-2">
-            <div className="flex items-center justify-center" style={{ width: '350px', height: '350px', marginTop: '0.1cm' }}>
-              <Image src="/logo-LIBERTADOR-2.png" alt="Logo" width={350} height={350} priority />
+          <div className="flex justify-center mb-6">
+            <div className="relative w-full flex justify-center">
+              <Image 
+                src="/LA PINTADA.png" 
+                alt="La Pintada Eventos" 
+                width={300} 
+                height={150} 
+                className="w-auto h-auto max-h-32 object-contain"
+                priority 
+              />
             </div>
           </div>
           

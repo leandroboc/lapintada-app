@@ -13,9 +13,14 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-bold text-pintada-green font-serif tracking-wide">
-                La Pintada <span className="text-pintada-gold">Eventos</span>
-              </span>
+              <Image 
+                src="/LA PINTADA - LP.png" 
+                alt="La Pintada Eventos" 
+                width={200} 
+                height={60}
+                className="h-12 w-auto object-contain"
+                priority
+              />
             </div>
           </div>
 

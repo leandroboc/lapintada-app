@@ -1,19 +1,22 @@
 'use client'
 
+import Image from 'next/image'
+
 export default function HeroSection() {
   return (
     <section id="inicio" className="min-h-screen flex items-center pt-16 relative overflow-hidden">
-      {/* Background Image Placeholder */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
-        {/* Placeholder for Event Image - Replace with real photo later */}
-        <div 
-          className="w-full h-full bg-cover bg-center animate-fade-in-up scale-105"
-          style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop')",
-            animation: 'kenburns 20s infinite alternate' 
-          }}
-        ></div>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="/VIDEO-1.mp4" type="video/mp4" />
+        </video>
       </div>
       
       {/* Content */}
@@ -22,9 +25,16 @@ export default function HeroSection() {
           <span className="block text-pintada-gold text-xl md:text-2xl font-serif italic mb-4 tracking-wider">
             Donde la magia sucede
           </span>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl font-serif">
-            Quinta <span className="text-pintada-gold">La Pintada</span>
-          </h1>
+          <div className="flex justify-center mb-8">
+            <Image
+              src="/LA PINTADA.png"
+              alt="Quinta La Pintada"
+              width={600}
+              height={300}
+              className="w-full max-w-3xl h-auto drop-shadow-2xl"
+              priority
+            />
+          </div>
           <p className="text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed font-light drop-shadow-md">
             Un rincón de ensueño en Pocito, San Juan. Salón climatizado, amplios jardines y todo lo necesario para que tu evento sea inolvidable. Casamientos, Cumpleaños y Eventos Corporativos.
           </p>

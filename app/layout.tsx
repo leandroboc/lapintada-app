@@ -4,7 +4,7 @@ import { AuthProvider } from '../context/AuthContext'
 import PWAInstallPrompt from '../components/PWAInstallPrompt'
 
 export const metadata: Metadata = {
-  title: 'La Pintada - Sistema de Gestión',
+  title: 'La Pintada',
   description: 'Sistema integral de gestión de recibos y horarios para La Pintada',
   keywords: 'transporte, logística, cargas, terrestre, Argentina, empresa familiar',
   authors: [{ name: 'La Pintada' }],
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: 'La Pintada'
   },
   openGraph: {
-    title: 'La Pintada - Sistema de Gestión',
+    title: 'La Pintada',
     description: 'Sistema integral de gestión de recibos y horarios.',
     type: 'website',
     locale: 'es_AR',

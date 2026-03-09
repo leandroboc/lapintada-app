@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import '../globals.css'
 
 export const metadata: Metadata = {
-  title: 'La Pintada - Recibos y Horarios',
+  title: 'La Pintada',
   description: 'Aplicación para ver tus recibos de sueldo y horarios de trabajo',
   manifest: '/manifest-choferes.json',
   themeColor: '#3b82f6',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'La Pintada'
   },
   openGraph: {
-    title: 'La Pintada - Recibos y Horarios',
+    title: 'La Pintada',
     description: 'Aplicación para ver tus recibos de sueldo y horarios de trabajo.',
     type: 'website',
     locale: 'es_AR',

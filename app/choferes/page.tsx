@@ -88,8 +88,8 @@ export default function ChoferesApp() {
             <div className="flex items-center gap-3">
               <div className="flex flex-col">
                 <Image
-                  src="/LIBERTADOR-logo-app.png"
-                  alt="Libertador App"
+                  src="/LA PINTADA.png"
+                  alt="La Pintada"
                   width={200}
                   height={40}
                   sizes="(max-width: 640px) 140px, (max-width: 768px) 170px, 200px"

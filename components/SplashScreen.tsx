@@ -50,7 +50,7 @@ export default function SplashScreen({ onLoadingComplete }: SplashScreenProps) {
       {/* Texto de la app */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-extrabold text-white mb-2">
-          Transportes Libertador
+          La Pintada
         </h1>
         <p className="text-blue-100 text-lg font-medium">
           Sistema de Gestión

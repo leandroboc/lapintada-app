@@ -44,7 +44,7 @@ function VerifyContent() {
         <div className="rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="bg-gradient-to-r from-libertador-blue to-libertador-orange p-6 text-white">
             <h1 className="text-2xl font-extrabold">Verificación de Recibo</h1>
-            <p className="text-white/90 text-sm">Verificado por Transportes Libertador</p>
+            <p className="text-white/90 text-sm">Verificado por La Pintada</p>
           </div>
           <div className="p-6">
             {loading ? (
@@ -117,7 +117,7 @@ export default function VerificacionPage() {
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-40 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center h-16">
-            <img src="/logo-LIBERTADOR-3.png" alt="Transportes Libertador" className="h-8 w-auto" />
+            <img src="/LA PINTADA.png" alt="La Pintada" className="h-8 w-auto" />
           </div>
         </div>
       </nav>

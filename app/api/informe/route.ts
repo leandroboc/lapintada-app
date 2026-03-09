@@ -48,7 +48,7 @@ export async function GET() {
     const cover = addPage()
     let logoBytes: Buffer | null = null
     try {
-      const logoPath = path.join(process.cwd(), 'public', 'logo-LIBERTADOR-3.png')
+      const logoPath = path.join(process.cwd(), 'public', 'LA PINTADA.png')
       logoBytes = await fs.readFile(logoPath)
     } catch {}
     if (logoBytes) {

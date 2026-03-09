@@ -29,7 +29,10 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">Dirección</h4>
-                  <p className="text-gray-600">Santiago del Estero 1715 (S), Capital</p>
+                  <p className="text-gray-600">Los Sauces 649 este, Pocito</p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    (Entre calle 13 y 14, o entre Mendoza y Ruta 40)
+                  </p>
                   <p className="text-gray-600">San Juan, Argentina</p>
                 </div>
               </div>
@@ -42,8 +45,8 @@ export default function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Teléfono</h4>
-                  <p className="text-gray-600">4240365</p>
+                  <h4 className="font-semibold text-gray-900 mb-1">Teléfono (Solo WhatsApp)</h4>
+                  <p className="text-gray-600">+54 9 2644 14-6619 (Ramiro)</p>
                 </div>
               </div>
 
@@ -57,7 +60,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
-                  <p className="text-gray-600">info@elibertador.com</p>
+                  <p className="text-gray-600">info@lapintada.com</p>
                 </div>
               </div>
 
@@ -70,8 +73,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">Horarios de Atención</h4>
-                  <p className="text-gray-600">Lunes a Viernes: 8:00 - 18:00</p>
-                  <p className="text-gray-600">Sábados: 8:00 - 12:00</p>
+                  <p className="text-gray-600">Solo mensajes por WhatsApp</p>
                 </div>
               </div>
             </div>
@@ -83,7 +85,7 @@ export default function ContactSection() {
               <h3 className="text-xl font-bold text-gray-900 mb-4">Nuestra Ubicación</h3>
               <div className="aspect-w-16 aspect-h-12 h-96 rounded-lg overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3637.5867!2d-68.5364!3d-31.5392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96816a99a03e90b3%3A0x1234567890abcdef!2sSantiago%20del%20Estero%201715%2C%20Capital%2C%20San%20Juan!5e0!3m2!1ses-419!2sar!4v1234567890123"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3400.089989918237!2d-68.5878!3d-31.6835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDQxJzAwLjYiUyA2OMKwMzUnMTYuMSJX!5e0!3m2!1ses!2sar!4v1635789012345!5m2!1ses!2sar"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

@@ -49,9 +49,6 @@ export default function Home() {
       {/* Contact Section */}
       <ContactSection />
 
-      {/* CTA Section */}
-      <CTASection />
-
       {/* Footer */}
       <Footer />
     </main>

@@ -11,8 +11,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6">
-              <Link href="/" aria-label="Ir a inicio" className="text-2xl font-bold text-white font-serif tracking-wide">
-                La Pintada <span className="text-pintada-gold">Eventos</span>
+              <Link href="/" aria-label="Ir a inicio" className="inline-flex items-center">
+                <Image
+                  src="/LA PINTADA.png"
+                  alt="La Pintada"
+                  width={280}
+                  height={70}
+                  className="h-12 w-auto object-contain"
+                />
               </Link>
             </div>
             <div className="flex space-x-4">

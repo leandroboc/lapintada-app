@@ -49,11 +49,11 @@ export default function EmpleadoLogin() {
         <div className="text-center mb-6">
           <div className="mx-auto mb-3 flex items-center justify-center">
             <Image
-              src="/LA PINTADA - LP.png"
+              src="/LA PINTADA.png"
               alt="La Pintada Eventos"
-              width={280}
-              height={120}
-              className="w-auto h-auto max-h-24 object-contain"
+              width={320}
+              height={140}
+              className="w-auto h-auto max-h-28 object-contain"
               priority
             />
           </div>

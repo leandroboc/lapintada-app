@@ -3,6 +3,7 @@
 import { ReactNode } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface DashboardLayoutProps {
   children: ReactNode
@@ -19,9 +20,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center">
-              <span className="text-xl font-bold text-pintada-green tracking-wide">
-                La Pintada <span className="text-pintada-gold">Admin</span>
-              </span>
+              <Image
+                src="/LA PINTADA - LP.png"
+                alt="La Pintada"
+                width={180}
+                height={56}
+                className="h-9 w-auto object-contain"
+                priority
+              />
             </Link>
 
             {/* User Menu */}

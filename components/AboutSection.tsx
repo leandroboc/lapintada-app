@@ -2,11 +2,12 @@
 
 export default function AboutSection() {
   return (
-    <section id="espacios" className="py-20 bg-[#fffdf9] overflow-hidden">
+    <section id="espacios" className="py-20 bg-[#fffdf9] overflow-hidden relative">
+      <div className="absolute -top-20 left-0 w-72 h-72 bg-[#f5ddc5]/45 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#f7eadc]/60 rounded-full blur-3xl"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content */}
-          <div data-aos="fade-right">
+          <div className="rounded-[2rem] border border-[#ead9c8] bg-[#fffaf4]/90 p-8 md:p-10 shadow-[0_24px_70px_rgba(122,92,70,0.12)]" data-aos="fade-right">
             <h4 className="text-[#c39a72] uppercase tracking-widest font-semibold mb-2 text-sm">Nuestra Historia</h4>
             <h2 className="text-4xl md:text-5xl font-bold text-[#5f4b3e] mb-8">
               Un Oasis Natural <br/> a minutos de la ciudad
@@ -28,43 +29,40 @@ export default function AboutSection() {
               Consultar Disponibilidad &rarr;
             </a>
           </div>
-
-          {/* Image Grid */}
           <div className="relative" data-aos="fade-left">
             <div className="grid grid-cols-2 gap-4">
-               {/* Placeholder Images - Replace with real photos */}
               <div className="space-y-4 mt-8">
-                 <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-lg bg-gray-200 relative group">
-                    <div 
+                 <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl bg-gray-200 relative group border border-[#ead9c8]">
+                    <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                       style={{ backgroundImage: "url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop')" }}
                     ></div>
                  </div>
-                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg bg-gray-200 relative group">
-                    <div 
+                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-200 relative group border border-[#ead9c8]">
+                    <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                       style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519225468359-2996bc01c34c?q=80&w=2069&auto=format&fit=crop')" }}
                     ></div>
                  </div>
               </div>
               <div className="space-y-4">
-                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg bg-gray-200 relative group">
-                    <div 
+                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-200 relative group border border-[#ead9c8]">
+                    <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                       style={{ backgroundImage: "url('https://images.unsplash.com/photo-1464366400600-7168b8af0bc3?q=80&w=2069&auto=format&fit=crop')" }}
                     ></div>
                  </div>
-                 <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-lg bg-gray-200 relative group">
-                    <div 
+                 <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl bg-gray-200 relative group border border-[#ead9c8]">
+                    <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                       style={{ backgroundImage: "url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop')" }}
                     ></div>
                  </div>
               </div>
             </div>
-            
-            {/* Floating decorative elements */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-pintada-gold/20 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute -bottom-5 -right-4 bg-[#f3dac2] text-[#6f5a4e] text-xs font-semibold tracking-[0.2em] px-5 py-3 rounded-full shadow-xl">
+              EVENTOS ÚNICOS
+            </div>
           </div>
         </div>
       </div>

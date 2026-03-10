@@ -5,9 +5,9 @@ import Image from 'next/image'
 export default function HeroSection() {
   return (
     <section id="inicio" className="min-h-screen flex items-center pt-16 relative overflow-hidden">
-      {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[#2f2318]/40 z-10"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,220,185,0.28),transparent_45%),radial-gradient(circle_at_80%_65%,rgba(255,189,138,0.22),transparent_46%)] z-10"></div>
         <video
           autoPlay
           loop
@@ -19,9 +19,8 @@ export default function HeroSection() {
         </video>
       </div>
       
-      {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
-        <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
+        <div className="text-center rounded-[2rem] border border-[#f8dcbc]/35 bg-[#2f2318]/25 backdrop-blur-sm p-8 md:p-12 shadow-[0_30px_120px_rgba(47,35,24,0.45)]" data-aos="fade-up" data-aos-duration="1000">
           <span className="block text-[#f6d8b5] text-xl md:text-2xl italic font-semibold mb-4 tracking-wider">
             Donde la magia sucede
           </span>
@@ -53,11 +52,18 @@ export default function HeroSection() {
               Ver Espacios
             </a>
           </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <span className="px-4 py-2 rounded-full border border-[#f7e4cf]/60 bg-[#f7e4cf]/20 text-[#fff5ea] text-sm tracking-wide">BODAS</span>
+            <span className="px-4 py-2 rounded-full border border-[#f7e4cf]/60 bg-[#f7e4cf]/20 text-[#fff5ea] text-sm tracking-wide">XV AÑOS</span>
+            <span className="px-4 py-2 rounded-full border border-[#f7e4cf]/60 bg-[#f7e4cf]/20 text-[#fff5ea] text-sm tracking-wide">EVENTOS CORPORATIVOS</span>
+          </div>
         </div>
       </div>
-      
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent z-20"></div>
+      <div className="absolute bottom-0 left-0 w-full z-20">
+        <svg viewBox="0 0 1440 140" className="w-full h-20 md:h-28 fill-[#fffdf9]">
+          <path d="M0,96L60,90.7C120,85,240,75,360,58.7C480,43,600,21,720,26.7C840,32,960,64,1080,74.7C1200,85,1320,75,1380,69.3L1440,64L1440,140L1380,140C1320,140,1200,140,1080,140C960,140,840,140,720,140C600,140,480,140,360,140C240,140,120,140,60,140L0,140Z"></path>
+        </svg>
+      </div>
     </section>
   )
 }

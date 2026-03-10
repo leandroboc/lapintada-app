@@ -2,7 +2,9 @@
 
 export default function ContactSection() {
   return (
-    <section id="contacto" className="py-20 bg-[#fff9f3]">
+    <section id="contacto" className="py-24 bg-[linear-gradient(180deg,#fff9f3_0%,#fff3e8_100%)] relative overflow-hidden">
+      <div className="absolute -top-8 left-0 w-72 h-72 bg-[#f4dbc3]/55 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#f8eadb]/60 rounded-full blur-3xl"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -17,7 +19,7 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Info */}
           <div data-aos="fade-right">
-            <div className="bg-[#fffaf5] border border-[#ecdccd] rounded-2xl p-8 shadow-lg">
+            <div className="bg-[#fffaf5]/95 border border-[#ecdccd] rounded-[2rem] p-8 shadow-[0_24px_70px_rgba(111,90,78,0.18)]">
               <h3 className="text-2xl font-bold text-[#5f4b3e] mb-8">Información de Contacto</h3>
               
               {/* Address */}
@@ -81,7 +83,7 @@ export default function ContactSection() {
 
           {/* Map */}
           <div data-aos="fade-left">
-            <div className="bg-[#fffaf5] border border-[#ecdccd] rounded-2xl p-4 shadow-lg h-full">
+            <div className="bg-[#fffaf5]/95 border border-[#ecdccd] rounded-[2rem] p-4 shadow-[0_24px_70px_rgba(111,90,78,0.18)] h-full">
               <h3 className="text-xl font-bold text-[#5f4b3e] mb-4">Nuestra Ubicación</h3>
               <div className="aspect-w-16 aspect-h-12 h-96 rounded-lg overflow-hidden">
                 <iframe
@@ -95,7 +97,7 @@ export default function ContactSection() {
                   className="rounded-lg"
                 ></iframe>
               </div>
-              <div className="mt-4 p-3 bg-[#f7ece1] rounded-lg">
+              <div className="mt-4 p-3 bg-[#f7ece1] rounded-xl border border-[#ead7c4]">
                 <p className="text-sm text-[#7b6554] flex items-center">
                   <svg className="w-4 h-4 text-[#a98263] mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />

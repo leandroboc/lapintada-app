@@ -45,17 +45,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100">
-      <Image
-        src="/fondo-admin.png"
-        alt=""
-        fill
-        sizes="100vw"
-        className="pointer-events-none select-none object-cover opacity-20"
-        priority
-      />
-      <div className="relative z-10 max-w-md w-full px-4">
-        <div className="rounded-2xl shadow-xl bg-white/95 backdrop-blur-sm border border-white/70">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100">
+      <div className="max-w-md w-full px-4">
+        <div className="rounded-2xl shadow-xl bg-white border border-gray-200">
           <div className="relative z-10 space-y-8 px-7 py-8 sm:px-8 sm:py-9">
             <div className="text-center">
               <div className="flex justify-center mb-6">

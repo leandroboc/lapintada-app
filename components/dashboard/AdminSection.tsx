@@ -38,17 +38,80 @@ export default function AdminSection() {
     })()
   }, [])
 
-  const handleConfigSave = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (!user) return
+    setConfigForm((prev) => ({
+      ...prev,
+      adminNombre: user.nombre || '',
+      adminApellido: user.apellido || '',
+      adminDni: user.dni_admin || '',
+      adminEmail: user.email || '',
+    }))
+  }, [user])
+
+  const handleConfigSave = async (e: React.FormEvent) => {
     e.preventDefault()
     setShowSuccess('')
     setShowError('')
+
+    if (!user?.id) {
+      setShowError('Sesión inválida')
+      return
+    }
+
+    if (!configForm.adminNombre.trim() || !configForm.adminApellido.trim() || !configForm.adminEmail.trim()) {
+      setShowError('Nombre, apellido y email son obligatorios')
+      return
+    }
+
+    if (!/^\d{8}$/.test(configForm.adminDni)) {
+      setShowError('El DNI debe tener exactamente 8 dígitos')
+      return
+    }
 
     if (configForm.newPassword !== configForm.confirmPassword) {
       setShowError('Las contraseñas no coinciden')
       return
     }
 
-    setShowSuccess('Configuración guardada correctamente (función en desarrollo)')
+    try {
+      const response = await fetch('/api/admin/profile', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: user.id,
+          nombre: configForm.adminNombre.trim(),
+          apellido: configForm.adminApellido.trim(),
+          email: configForm.adminEmail.trim(),
+          dni_admin: configForm.adminDni.trim(),
+          currentPassword: configForm.currentPassword,
+          newPassword: configForm.newPassword,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        setShowError(data.error || 'No se pudo guardar la configuración')
+        return
+      }
+
+      if (data.user) {
+        localStorage.setItem('user_data', JSON.stringify(data.user))
+      }
+
+      setConfigForm((prev) => ({
+        ...prev,
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: '',
+      }))
+      setShowSuccess('Configuración guardada correctamente')
+    } catch {
+      setShowError('Error de conexión')
+    }
   }
 
   const handleNewAdmin = (e: React.FormEvent) => {

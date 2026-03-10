@@ -3,12 +3,10 @@
 import { useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 import HeroSection from '../components/HeroSection'
 import ServicesSection from '../components/ServicesSection'
 import AboutSection from '../components/AboutSection'
 import ContactSection from '../components/ContactSection'
-import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 
@@ -34,7 +32,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-[#fffaf6]">
       <Navbar />
 
       {/* Hero Section */}

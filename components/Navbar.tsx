@@ -7,7 +7,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-[#fffaf6]/95 backdrop-blur-sm border-b border-[#e9dccf] z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -43,7 +43,7 @@ export default function Navbar() {
           </div>
           
           <div className="hidden md:flex items-center space-x-4">
-              <a href="/login" className="text-pintada-green hover:text-pintada-gold px-3 py-2 text-xs font-semibold border border-pintada-green rounded-full hover:border-pintada-gold transition-all duration-300">
+              <a href="/login" className="text-[#6f5a4e] hover:text-[#b88b5a] px-3 py-2 text-xs font-semibold border border-[#c9b09a] rounded-full hover:border-[#b88b5a] transition-all duration-300">
                 ADMINISTRACION
               </a>
           </div>
@@ -52,7 +52,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="bg-gray-50 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-libertador-blue hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-libertador-blue"
+              className="bg-[#f8efe6] inline-flex items-center justify-center p-2 rounded-md text-[#6f5a4e] hover:text-[#b88b5a] hover:bg-[#f3e5d8] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#d7b998]"
             >
               <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 {isOpen ? (
@@ -68,20 +68,20 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
-              <a href="#inicio" className="text-gray-700 hover:text-libertador-blue block px-3 py-2 rounded-md text-base font-medium">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[#fffaf6] border-t border-[#e9dccf]">
+              <a href="#inicio" className="text-[#6f5a4e] hover:text-[#b88b5a] block px-3 py-2 rounded-md text-base font-medium">
                 Inicio
               </a>
-              <a href="#servicios" className="text-gray-700 hover:text-libertador-blue block px-3 py-2 rounded-md text-base font-medium">
-                Servicios
+              <a href="#eventos" className="text-[#6f5a4e] hover:text-[#b88b5a] block px-3 py-2 rounded-md text-base font-medium">
+                Eventos
               </a>
-              <a href="#nosotros" className="text-gray-700 hover:text-libertador-blue block px-3 py-2 rounded-md text-base font-medium">
-                Nosotros
+              <a href="#espacios" className="text-[#6f5a4e] hover:text-[#b88b5a] block px-3 py-2 rounded-md text-base font-medium">
+                Espacios
               </a>
-              <a href="#contacto" className="text-gray-700 hover:text-libertador-blue block px-3 py-2 rounded-md text-base font-medium">
+              <a href="#contacto" className="text-[#6f5a4e] hover:text-[#b88b5a] block px-3 py-2 rounded-md text-base font-medium">
                 Contacto
               </a>
-              <a href="/login" className="text-gray-700 hover:text-libertador-blue block px-3 py-2 rounded-md text-base font-medium">
+              <a href="/login" className="text-[#6f5a4e] hover:text-[#b88b5a] block px-3 py-2 rounded-md text-base font-medium">
                 ADMINISTRACION
               </a>
             </div>

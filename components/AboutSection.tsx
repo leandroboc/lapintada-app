@@ -8,7 +8,7 @@ export default function AboutSection() {
           {/* Text Content */}
           <div data-aos="fade-right">
             <h4 className="text-pintada-gold uppercase tracking-widest font-semibold mb-2 text-sm">Nuestra Historia</h4>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 font-serif">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
               Un Oasis Natural <br/> a minutos de la ciudad
             </h2>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed font-light">

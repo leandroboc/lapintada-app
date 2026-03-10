@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 
 export default function EmpleadoLogin() {
   const [dni, setDni] = useState('')
@@ -48,7 +47,7 @@ export default function EmpleadoLogin() {
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md border-t-4 border-pintada-gold">
         <div className="text-center mb-6">
           <div className="mx-auto mb-3 flex items-center justify-center">
-            <span className="text-3xl font-bold text-pintada-green font-serif tracking-wide">
+            <span className="text-3xl font-bold text-pintada-green tracking-wide">
               La Pintada <span className="text-pintada-gold">Eventos</span>
             </span>
           </div>

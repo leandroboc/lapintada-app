@@ -22,7 +22,7 @@ export default function HeroSection() {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
         <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
-          <span className="block text-pintada-gold text-xl md:text-2xl font-serif italic mb-4 tracking-wider">
+          <span className="block text-pintada-gold text-xl md:text-2xl italic font-semibold mb-4 tracking-wider">
             Donde la magia sucede
           </span>
           <div className="flex justify-center mb-8">

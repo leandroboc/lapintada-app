@@ -59,10 +59,8 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full z-20">
-        <svg viewBox="0 0 1440 140" className="w-full h-20 md:h-28 fill-[#fffdf9]">
-          <path d="M0,96L60,90.7C120,85,240,75,360,58.7C480,43,600,21,720,26.7C840,32,960,64,1080,74.7C1200,85,1320,75,1380,69.3L1440,64L1440,140L1380,140C1320,140,1200,140,1080,140C960,140,840,140,720,140C600,140,480,140,360,140C240,140,120,140,60,140L0,140Z"></path>
-        </svg>
+      <div className="absolute bottom-0 left-0 w-full h-40 md:h-52 z-20 bg-gradient-to-t from-[#fffdf9] via-[#fffdf9]/85 to-transparent">
+        <div className="absolute inset-x-0 bottom-0 h-20 md:h-24 bg-gradient-to-t from-[#fffdf9] to-transparent"></div>
       </div>
     </section>
   )

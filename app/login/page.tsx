@@ -49,11 +49,11 @@ export default function LoginPage() {
       <div className="max-w-md w-full px-4">
         <div className="relative overflow-hidden rounded-2xl shadow-xl bg-white">
           <Image
-            src="/MARCO-ADMIN.png"
+            src="/fondo-admin.png"
             alt=""
             fill
             sizes="(max-width: 768px) 100vw, 448px"
-            className="pointer-events-none select-none object-cover"
+            className="pointer-events-none select-none object-fill"
             priority
           />
           <div className="relative z-10 space-y-8 px-7 py-8 sm:px-8 sm:py-9">

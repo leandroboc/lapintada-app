@@ -21,10 +21,7 @@ export default function HeroSection() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
         <div className="text-center rounded-[2rem] border border-[#f8dcbc]/35 bg-[#2f2318]/25 backdrop-blur-sm p-8 md:p-12 shadow-[0_30px_120px_rgba(47,35,24,0.45)]" data-aos="fade-up" data-aos-duration="1000">
-          <span className="block text-[#f6d8b5] text-xl md:text-2xl italic font-semibold mb-4 tracking-wider">
-            Donde la magia sucede
-          </span>
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-10">
             <Image
               src="/LA PINTADA.png"
               alt="Quinta La Pintada"
@@ -41,26 +38,21 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a
               href="#contacto"
-              className="bg-[#d8b28a] text-white hover:bg-[#fdf5ee] hover:text-[#6f5a4e] px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-xl border-2 border-transparent hover:border-[#d8b28a] uppercase tracking-widest"
+              className="bg-[#d8b28a] text-white hover:bg-[#fdf5ee] hover:text-[#6f5a4e] px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-[0_12px_30px_rgba(216,178,138,0.45)] border-2 border-[#f6dfc7]/80 uppercase tracking-widest"
             >
               Reservar Fecha
             </a>
             <a
               href="#espacios"
-              className="bg-transparent border-2 border-[#f7e4cf] text-[#fff8f1] hover:bg-[#fff8f1] hover:text-[#6f5a4e] px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 uppercase tracking-widest"
+              className="bg-[#2f2318]/65 border-2 border-[#f7e4cf] text-[#fff8f1] hover:bg-[#fff8f1] hover:text-[#6f5a4e] px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 uppercase tracking-widest shadow-[0_10px_24px_rgba(47,35,24,0.35)]"
             >
               Ver Espacios
             </a>
           </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <span className="px-4 py-2 rounded-full border border-[#f7e4cf]/60 bg-[#f7e4cf]/20 text-[#fff5ea] text-sm tracking-wide">BODAS</span>
-            <span className="px-4 py-2 rounded-full border border-[#f7e4cf]/60 bg-[#f7e4cf]/20 text-[#fff5ea] text-sm tracking-wide">XV AÑOS</span>
-            <span className="px-4 py-2 rounded-full border border-[#f7e4cf]/60 bg-[#f7e4cf]/20 text-[#fff5ea] text-sm tracking-wide">EVENTOS CORPORATIVOS</span>
-          </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-40 md:h-52 z-20 bg-gradient-to-t from-[#fffdf9] via-[#fffdf9]/85 to-transparent">
-        <div className="absolute inset-x-0 bottom-0 h-20 md:h-24 bg-gradient-to-t from-[#fffdf9] to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-32 md:h-44 z-10 bg-gradient-to-t from-[#fffdf9] via-[#fffdf9]/80 to-transparent">
+        <div className="absolute inset-x-0 bottom-0 h-16 md:h-20 bg-gradient-to-t from-[#fffdf9] to-transparent"></div>
       </div>
     </section>
   )

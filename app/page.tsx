@@ -78,10 +78,7 @@ export default function Home() {
               <div className="lg:col-span-7 px-6 pb-8 md:px-8 md:pb-10 lg:pr-10 lg:pl-2 flex items-center">
                 <div className="max-w-xl">
                   <p className="text-[#c39a72] uppercase tracking-[0.25em] text-xs md:text-sm mb-3 font-semibold">Experiencia La Pintada</p>
-                  <h3 className="text-3xl md:text-4xl text-[#5f4b3e] font-bold leading-tight mb-4">Viví la energía real de cada evento</h3>
-                  <p className="text-[#7b6554] text-base md:text-lg leading-relaxed font-light">
-                    En PC lo mostramos en formato vertical protagonista y en celular aparece primero, limpio y directo.
-                  </p>
+                  <h3 className="text-3xl md:text-4xl text-[#5f4b3e] font-bold leading-tight mb-4">VIVI UN MOMENTO UNICO</h3>
                 </div>
               </div>
             </div>

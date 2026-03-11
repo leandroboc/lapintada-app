@@ -20,13 +20,13 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 min-h-[calc(100vh-4rem)] flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 w-full">
+        <div className="w-full max-w-3xl">
           <div
             className="rounded-[2rem] border border-[#f8dcbc]/35 bg-[#2f2318]/25 backdrop-blur-sm p-8 md:p-10 shadow-[0_30px_120px_rgba(47,35,24,0.45)]"
-            data-aos="fade-right"
+            data-aos="fade-up"
             data-aos-duration="1000"
           >
-            <div className="flex justify-start mb-8">
+            <div className="flex justify-center md:justify-start mb-8">
               <Image
                 src="/LA PINTADA.png"
                 alt="Quinta La Pintada"
@@ -39,7 +39,7 @@ export default function HeroSection() {
             <p className="text-lg md:text-xl text-[#fef8f1] mb-8 max-w-2xl leading-relaxed font-light drop-shadow-md">
               Un rincón de ensueño en Pocito, San Juan. Salón climatizado, amplios jardines y todo lo necesario para que tu evento sea inolvidable. Casamientos, Cumpleaños y Eventos Corporativos.
             </p>
-            <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
+            <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-center">
               <a
                 href="#contacto"
                 className="bg-[#d8b28a] text-white hover:bg-[#fdf5ee] hover:text-[#6f5a4e] px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-[0_12px_30px_rgba(216,178,138,0.45)] border-2 border-[#f6dfc7]/80 uppercase tracking-widest"
@@ -52,41 +52,6 @@ export default function HeroSection() {
               >
                 Ver Espacios
               </a>
-            </div>
-          </div>
-
-          <div
-            className="rounded-[2rem] border border-[#f8dcbc]/30 bg-[#2f2318]/30 backdrop-blur-sm p-6 md:p-8 shadow-[0_30px_120px_rgba(47,35,24,0.45)] flex flex-col justify-between"
-            data-aos="fade-left"
-            data-aos-duration="1000"
-            data-aos-delay="120"
-          >
-            <div className="space-y-4">
-              <div className="rounded-full border border-[#f4d8bd]/60 text-[#fef8f1] text-xs tracking-[0.2em] uppercase px-4 py-2 w-fit">
-                Experiencias en movimiento
-              </div>
-              <h2 className="text-3xl md:text-4xl text-[#fff8f1] font-bold leading-tight">
-                Bajás, descubrís,
-                <br />
-                y todo aparece con vida
-              </h2>
-              <p className="text-[#f4e3d4] text-base md:text-lg leading-relaxed font-light">
-                Un diseño pensado para que cada sección te reciba con ritmo visual, profundidad y transiciones suaves de alto impacto.
-              </p>
-            </div>
-            <div className="grid grid-cols-3 gap-3 mt-8">
-              <div className="rounded-2xl border border-[#f4d8bd]/45 bg-[#2f2318]/45 p-4 text-center">
-                <p className="text-[#fff8f1] text-2xl font-bold">360°</p>
-                <p className="text-[#f4e3d4] text-xs tracking-wider uppercase">Espacios</p>
-              </div>
-              <div className="rounded-2xl border border-[#f4d8bd]/45 bg-[#2f2318]/45 p-4 text-center">
-                <p className="text-[#fff8f1] text-2xl font-bold">15 min</p>
-                <p className="text-[#f4e3d4] text-xs tracking-wider uppercase">Del centro</p>
-              </div>
-              <div className="rounded-2xl border border-[#f4d8bd]/45 bg-[#2f2318]/45 p-4 text-center">
-                <p className="text-[#fff8f1] text-2xl font-bold">∞</p>
-                <p className="text-[#f4e3d4] text-xs tracking-wider uppercase">Momentos</p>
-              </div>
             </div>
           </div>
         </div>

@@ -59,23 +59,18 @@ export default function Home() {
             data-aos="zoom-in-up"
             data-aos-duration="1100"
           >
-            <div className="relative h-[320px] md:h-[520px]">
+            <div className="relative h-[320px] md:h-[520px] bg-black">
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                controls
-                preload="metadata"
-                className="w-full h-full object-cover"
+                preload="auto"
+                className="w-full h-full object-contain bg-black"
+                src="/QLP_RESUMEN.mov"
               >
-                <source src="/QLP_RESUMEN.mov" type="video/quicktime" />
+                <source src="/QLP_RESUMEN.mp4" type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2f2318]/55 via-[#2f2318]/20 to-transparent pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 p-6 md:p-10 pointer-events-none">
-                <p className="text-[#fdf5ee] uppercase tracking-[0.25em] text-xs md:text-sm mb-3">Experiencia La Pintada</p>
-                <h3 className="text-[#fff8f1] text-2xl md:text-4xl font-bold leading-tight">Bajás y el predio cobra vida</h3>
-              </div>
             </div>
           </div>
         </div>

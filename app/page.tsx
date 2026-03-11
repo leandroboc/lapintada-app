@@ -59,18 +59,31 @@ export default function Home() {
             data-aos="zoom-in-up"
             data-aos-duration="1100"
           >
-            <div className="relative h-[320px] md:h-[520px] bg-black">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="w-full h-full object-contain bg-black"
-                src="/QLP_RESUMEN.mov"
-              >
-                <source src="/QLP_RESUMEN.mp4" type="video/mp4" />
-              </video>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+              <div className="lg:col-span-5 p-5 md:p-6 lg:p-8 flex items-center justify-center">
+                <div className="relative w-full max-w-[350px] aspect-[9/16] rounded-[1.7rem] overflow-hidden shadow-[0_22px_60px_rgba(30,24,20,0.35)] border border-[#ead9c8]">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    className="w-full h-full object-cover"
+                    src="/QLP_RESUMEN.mov"
+                  >
+                    <source src="/QLP_RESUMEN.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <div className="lg:col-span-7 px-6 pb-8 md:px-8 md:pb-10 lg:pr-10 lg:pl-2 flex items-center">
+                <div className="max-w-xl">
+                  <p className="text-[#c39a72] uppercase tracking-[0.25em] text-xs md:text-sm mb-3 font-semibold">Experiencia La Pintada</p>
+                  <h3 className="text-3xl md:text-4xl text-[#5f4b3e] font-bold leading-tight mb-4">Viví la energía real de cada evento</h3>
+                  <p className="text-[#7b6554] text-base md:text-lg leading-relaxed font-light">
+                    En PC lo mostramos en formato vertical protagonista y en celular aparece primero, limpio y directo.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

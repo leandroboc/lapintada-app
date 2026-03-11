@@ -3,6 +3,8 @@
 import { useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useRouter } from 'next/navigation'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import HeroSection from '../components/HeroSection'
 import ServicesSection from '../components/ServicesSection'
 import AboutSection from '../components/AboutSection'
@@ -23,6 +25,16 @@ export default function Home() {
     }
   }, [user, token, router])
 
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      easing: 'ease-out-cubic',
+      once: false,
+      mirror: true,
+      offset: 80,
+    })
+  }, [])
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -40,6 +52,34 @@ export default function Home() {
       <div className="relative">
         <AboutSection />
       </div>
+      <section className="py-20 md:py-24 bg-[#fffdf9]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            className="rounded-[2.2rem] overflow-hidden border border-[#ead9c8] shadow-[0_28px_80px_rgba(111,90,78,0.2)] bg-[#fffaf4]"
+            data-aos="zoom-in-up"
+            data-aos-duration="1100"
+          >
+            <div className="relative h-[320px] md:h-[520px]">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+                preload="metadata"
+                className="w-full h-full object-cover"
+              >
+                <source src="/QLP_RESUMEN.mov" type="video/quicktime" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2f2318]/55 via-[#2f2318]/20 to-transparent pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 p-6 md:p-10 pointer-events-none">
+                <p className="text-[#fdf5ee] uppercase tracking-[0.25em] text-xs md:text-sm mb-3">Experiencia La Pintada</p>
+                <h3 className="text-[#fff8f1] text-2xl md:text-4xl font-bold leading-tight">Bajás y el predio cobra vida</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <div className="relative -mt-1">
         <svg viewBox="0 0 1440 140" className="w-full h-20 md:h-28 fill-[#fdf6ef]">
           <path d="M0,32L60,48C120,64,240,96,360,106.7C480,117,600,107,720,85.3C840,64,960,32,1080,21.3C1200,11,1320,21,1380,26.7L1440,32L1440,140L1380,140C1320,140,1200,140,1080,140C960,140,840,140,720,140C600,140,480,140,360,140C240,140,120,140,60,140L0,140Z"></path>

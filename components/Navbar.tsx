@@ -1,16 +1,25 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isTransparent, setIsTransparent] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => {
+      setIsTransparent(window.scrollY > 90)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-[#fffaf6]/95 backdrop-blur-sm border-b border-[#e9dccf] z-50">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isTransparent ? 'bg-[#fffaf6]/20 backdrop-blur-md border-b border-[#ead9c8]/40' : 'bg-[#fffaf6]/95 backdrop-blur-sm border-b border-[#e9dccf]'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
               <Image 
@@ -18,25 +27,24 @@ export default function Navbar() {
                 alt="La Pintada Eventos" 
                 width={150} 
                 height={45}
-                className="h-10 w-auto object-contain"
+                className={`h-10 w-auto object-contain transition-all duration-500 ${isTransparent ? 'drop-shadow-[0_6px_16px_rgba(47,35,24,0.38)] scale-105' : ''}`}
                 priority
               />
             </div>
           </div>
 
-          {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a href="#inicio" className="text-gray-600 hover:text-pintada-gold px-3 py-2 text-sm font-medium transition-colors duration-200 uppercase tracking-wider">
+              <a href="#inicio" className={`px-3 py-2 text-sm font-medium transition-colors duration-200 uppercase tracking-wider ${isTransparent ? 'text-[#5f4b3e] hover:text-[#b88b5a]' : 'text-gray-600 hover:text-pintada-gold'}`}>
                 Inicio
               </a>
-              <a href="#eventos" className="text-gray-600 hover:text-pintada-gold px-3 py-2 text-sm font-medium transition-colors duration-200 uppercase tracking-wider">
+              <a href="#eventos" className={`px-3 py-2 text-sm font-medium transition-colors duration-200 uppercase tracking-wider ${isTransparent ? 'text-[#5f4b3e] hover:text-[#b88b5a]' : 'text-gray-600 hover:text-pintada-gold'}`}>
                 Eventos
               </a>
-              <a href="#espacios" className="text-gray-600 hover:text-pintada-gold px-3 py-2 text-sm font-medium transition-colors duration-200 uppercase tracking-wider">
+              <a href="#espacios" className={`px-3 py-2 text-sm font-medium transition-colors duration-200 uppercase tracking-wider ${isTransparent ? 'text-[#5f4b3e] hover:text-[#b88b5a]' : 'text-gray-600 hover:text-pintada-gold'}`}>
                 Espacios
               </a>
-              <a href="#contacto" className="text-gray-600 hover:text-pintada-gold px-3 py-2 text-sm font-medium transition-colors duration-200 uppercase tracking-wider">
+              <a href="#contacto" className={`px-3 py-2 text-sm font-medium transition-colors duration-200 uppercase tracking-wider ${isTransparent ? 'text-[#5f4b3e] hover:text-[#b88b5a]' : 'text-gray-600 hover:text-pintada-gold'}`}>
                 Contacto
               </a>
             </div>
@@ -48,7 +56,6 @@ export default function Navbar() {
               </a>
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -65,7 +72,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[#fffaf6] border-t border-[#e9dccf]">

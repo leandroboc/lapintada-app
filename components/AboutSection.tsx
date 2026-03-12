@@ -1,9 +1,62 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function AboutSection() {
   const [activeSpace, setActiveSpace] = useState<'coral' | 'habano' | null>(null)
+  const [modalSpace, setModalSpace] = useState<'coral' | 'habano' | null>(null)
+  const [modalIndex, setModalIndex] = useState(0)
+
+  const coralSlides = [
+    '/ESPACIOS/casa%20coral/565620080_18077906978114911_4962993372681842896_n..jpg',
+    '/ESPACIOS/casa%20coral/566225263_18080745392061419_2870736016126793691_n..jpg',
+    '/ESPACIOS/casa%20coral/566867275_18077596640323451_6169359340524573308_n..jpg',
+    '/ESPACIOS/casa%20coral/568785184_18078078782116705_4689832732621851106_n..jpg',
+    '/ESPACIOS/casa%20coral/575744533_18184146181343547_656631123698890639_n..jpg',
+  ]
+
+  const habanoSlides = [
+    '/ESPACIOS/casa%20habano/559715448_17996989223826687_7644015389572705418_n..jpg',
+    '/ESPACIOS/casa%20habano/565572585_18084198937957394_4193041597020174975_n..jpg',
+    '/ESPACIOS/casa%20habano/571781769_18044363375678704_4892063616175662468_n..jpg',
+    '/ESPACIOS/casa%20habano/573356327_18123915301515095_2565020779678248690_n..jpg',
+    '/ESPACIOS/casa%20habano/581241040_18514415425070367_7316424698478704448_n..jpg',
+  ]
+
+  const slides = modalSpace === 'coral' ? coralSlides : modalSpace === 'habano' ? habanoSlides : []
+
+  const openModal = (space: 'coral' | 'habano') => {
+    setModalSpace(space)
+    setModalIndex(0)
+  }
+
+  const closeModal = () => {
+    setModalSpace(null)
+    setModalIndex(0)
+  }
+
+  useEffect(() => {
+    if (!modalSpace || slides.length <= 1) return
+    const timer = setInterval(() => {
+      setModalIndex((prev) => (prev + 1) % slides.length)
+    }, 2800)
+    return () => clearInterval(timer)
+  }, [modalSpace, slides.length])
+
+  useEffect(() => {
+    if (!modalSpace) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeModal()
+      if (e.key === 'ArrowRight') setModalIndex((prev) => (prev + 1) % slides.length)
+      if (e.key === 'ArrowLeft') setModalIndex((prev) => (prev - 1 + slides.length) % slides.length)
+    }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [modalSpace, slides.length])
 
   return (
     <section id="espacios" className="py-24 bg-[#fffdf9] overflow-hidden relative">
@@ -43,7 +96,8 @@ export default function AboutSection() {
                 className={`relative rounded-[2rem] overflow-hidden border border-[#ead9c8] shadow-2xl transition-all duration-700 cursor-pointer ${
                   activeSpace === 'coral' ? 'flex-[1.35]' : 'flex-1'
                 } ${activeSpace === 'habano' ? 'opacity-80' : 'opacity-100'}`}
-                onMouseEnter={() => setActiveSpace('coral')}
+                onMouseEnter={() => { setActiveSpace('coral'); openModal('coral') }}
+                onClick={() => openModal('coral')}
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
@@ -54,8 +108,7 @@ export default function AboutSection() {
                   Casa Coral
                 </div>
                 <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-[#fff8f1] text-3xl font-bold leading-tight mb-3">Espacio íntimo y natural</h3>
-                  <p className="text-[#f4e3d4] text-sm">Ideal para celebraciones con clima cálido y paisajes protagonistas.</p>
+                  <h3 className="text-[#fff8f1] text-4xl font-bold leading-tight">Casa Coral</h3>
                 </div>
               </div>
 
@@ -63,7 +116,8 @@ export default function AboutSection() {
                 className={`relative rounded-[2rem] overflow-hidden border border-[#ead9c8] shadow-2xl transition-all duration-700 cursor-pointer ${
                   activeSpace === 'habano' ? 'flex-[1.35]' : 'flex-1'
                 } ${activeSpace === 'coral' ? 'opacity-80' : 'opacity-100'}`}
-                onMouseEnter={() => setActiveSpace('habano')}
+                onMouseEnter={() => { setActiveSpace('habano'); openModal('habano') }}
+                onClick={() => openModal('habano')}
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
@@ -74,29 +128,36 @@ export default function AboutSection() {
                   Casa Habano
                 </div>
                 <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-[#fff8f1] text-3xl font-bold leading-tight mb-3">Diseño premium y amplitud</h3>
-                  <p className="text-[#f4e3d4] text-sm">Para eventos elegantes con una atmósfera sofisticada y moderna.</p>
+                  <h3 className="text-[#fff8f1] text-4xl font-bold leading-tight">Casa Habano</h3>
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:hidden" data-aos="fade-up">
-              <div className="relative aspect-[16/10] rounded-[1.5rem] overflow-hidden border border-[#ead9c8] shadow-2xl">
+              <button
+                type="button"
+                onClick={() => openModal('coral')}
+                className="relative aspect-[16/10] rounded-[1.5rem] overflow-hidden border border-[#ead9c8] shadow-2xl text-left"
+              >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: "url('/ESPACIOS/casa%20coral/566225263_18080745392061419_2870736016126793691_n..jpg')" }}
                 ></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2f2318]/70 to-transparent"></div>
                 <p className="absolute bottom-4 left-4 text-[#fff8f1] font-bold text-xl">Casa Coral</p>
-              </div>
-              <div className="relative aspect-[16/10] rounded-[1.5rem] overflow-hidden border border-[#ead9c8] shadow-2xl">
+              </button>
+              <button
+                type="button"
+                onClick={() => openModal('habano')}
+                className="relative aspect-[16/10] rounded-[1.5rem] overflow-hidden border border-[#ead9c8] shadow-2xl text-left"
+              >
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: "url('/ESPACIOS/casa%20habano/573356327_18123915301515095_2565020779678248690_n..jpg')" }}
                 ></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2f2318]/70 to-transparent"></div>
                 <p className="absolute bottom-4 left-4 text-[#fff8f1] font-bold text-xl">Casa Habano</p>
-              </div>
+              </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="160">
@@ -118,6 +179,67 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
+      {modalSpace && (
+        <div className="fixed inset-0 z-[80] bg-[#1f140b]/78 backdrop-blur-md p-4 md:p-10" onClick={closeModal}>
+          <div className="max-w-6xl mx-auto h-full flex items-center" onClick={(e) => e.stopPropagation()}>
+            <div className="w-full rounded-[2rem] overflow-hidden border border-[#ead9c8] bg-[#fffaf4] shadow-[0_30px_90px_rgba(31,20,11,0.45)]">
+              <div className="grid grid-cols-1 md:grid-cols-12">
+                <div className="md:col-span-7 relative aspect-[4/3] bg-black">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-all duration-700"
+                    style={{ backgroundImage: `url('${slides[modalIndex]}')` }}
+                  ></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2f2318]/70 via-transparent to-transparent"></div>
+                  <button
+                    type="button"
+                    onClick={() => setModalIndex((prev) => (prev - 1 + slides.length) % slides.length)}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#fffaf4]/25 backdrop-blur-sm border border-[#f4dbc3]/80 text-[#fff8f1] text-2xl leading-none"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setModalIndex((prev) => (prev + 1) % slides.length)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#fffaf4]/25 backdrop-blur-sm border border-[#f4dbc3]/80 text-[#fff8f1] text-2xl leading-none"
+                  >
+                    ›
+                  </button>
+                </div>
+                <div className="md:col-span-5 p-6 md:p-8 lg:p-10">
+                  <div className="rounded-full border border-[#d8b28a] text-[#7b6554] text-[11px] uppercase tracking-[0.22em] font-semibold px-4 py-2 inline-block mb-4">
+                    Galería Premium
+                  </div>
+                  <h3 className="text-[#5f4b3e] text-4xl font-bold mb-6">
+                    {modalSpace === 'coral' ? 'Casa Coral' : 'Casa Habano'}
+                  </h3>
+                  <div className="grid grid-cols-5 gap-2">
+                    {slides.map((slide, index) => (
+                      <button
+                        key={slide}
+                        type="button"
+                        onClick={() => setModalIndex(index)}
+                        className={`relative aspect-[3/4] rounded-xl overflow-hidden border ${modalIndex === index ? 'border-[#c39a72] ring-2 ring-[#ead9c8]' : 'border-[#ead9c8]'}`}
+                      >
+                        <div
+                          className="absolute inset-0 bg-cover bg-center"
+                          style={{ backgroundImage: `url('${slide}')` }}
+                        ></div>
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    className="mt-8 inline-flex items-center justify-center rounded-full border border-[#c9b09a] px-6 py-3 text-[#6f5a4e] text-sm font-semibold hover:text-[#b88b5a] hover:border-[#b88b5a] transition-colors"
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

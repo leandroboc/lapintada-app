@@ -6,6 +6,7 @@ export default function AboutSection() {
   const [activeSpace, setActiveSpace] = useState<'coral' | 'habano' | null>(null)
   const [modalSpace, setModalSpace] = useState<'coral' | 'habano' | null>(null)
   const [modalIndex, setModalIndex] = useState(0)
+  const [allowHoverOpen, setAllowHoverOpen] = useState(true)
 
   const coralSlides = [
     '/ESPACIOS/casa%20coral/565620080_18077906978114911_4962993372681842896_n..jpg',
@@ -33,6 +34,7 @@ export default function AboutSection() {
   const closeModal = () => {
     setModalSpace(null)
     setModalIndex(0)
+    setAllowHoverOpen(false)
   }
 
   useEffect(() => {
@@ -90,13 +92,19 @@ export default function AboutSection() {
             <div
               className="hidden lg:flex h-[520px] gap-4"
               data-aos="fade-left"
-              onMouseLeave={() => setActiveSpace(null)}
+              onMouseLeave={() => {
+                setActiveSpace(null)
+                setAllowHoverOpen(true)
+              }}
             >
               <div
                 className={`relative rounded-[2rem] overflow-hidden border border-[#ead9c8] shadow-2xl transition-all duration-700 cursor-pointer ${
                   activeSpace === 'coral' ? 'flex-[1.35]' : 'flex-1'
                 } ${activeSpace === 'habano' ? 'opacity-80' : 'opacity-100'}`}
-                onMouseEnter={() => { setActiveSpace('coral'); openModal('coral') }}
+                onMouseEnter={() => {
+                  setActiveSpace('coral')
+                  if (allowHoverOpen && !modalSpace) openModal('coral')
+                }}
                 onClick={() => openModal('coral')}
               >
                 <div
@@ -116,7 +124,10 @@ export default function AboutSection() {
                 className={`relative rounded-[2rem] overflow-hidden border border-[#ead9c8] shadow-2xl transition-all duration-700 cursor-pointer ${
                   activeSpace === 'habano' ? 'flex-[1.35]' : 'flex-1'
                 } ${activeSpace === 'coral' ? 'opacity-80' : 'opacity-100'}`}
-                onMouseEnter={() => { setActiveSpace('habano'); openModal('habano') }}
+                onMouseEnter={() => {
+                  setActiveSpace('habano')
+                  if (allowHoverOpen && !modalSpace) openModal('habano')
+                }}
                 onClick={() => openModal('habano')}
               >
                 <div

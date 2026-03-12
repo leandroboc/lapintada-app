@@ -48,7 +48,14 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-[#5f4b3e] mb-1">Teléfono (Solo WhatsApp)</h4>
-                  <p className="text-[#7b6554]">+54 9 2644 14-6619 (Ramiro)</p>
+                  <a
+                    href="https://wa.me/5492644146619?text=Hola%2C%20quisiera%20info%20sobre%20La%20Pintada%2C%20costos%20y%20fechas%20disponibles."
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#7b6554] hover:text-[#b88b5a] transition-colors"
+                  >
+                    +54 9 2644 14-6619
+                  </a>
                 </div>
               </div>
 

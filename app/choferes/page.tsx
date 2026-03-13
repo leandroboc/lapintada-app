@@ -38,23 +38,18 @@ export default function ChoferesApp() {
   }
 
   type Recibo = { id: number; nombre_archivo: string; fecha_subida: string; acknowledged?: number }
-  type Horario = { id: number; nombre_archivo: string; fecha_subida: string }
   type Aviso = { id: number; titulo: string; mensaje: string; created_at: string; leido?: number }
   const [recibos, setRecibos] = useState<Recibo[]>([])
-  const [horarios, setHorarios] = useState<Horario[]>([])
   const [avisos, setAvisos] = useState<Aviso[]>([])
   const unreadCount = avisos.filter(a => Number(a.leido || 0) === 0).length
 
   const loadData = async (uid: number) => {
     try {
       const r = await fetch(`/api/recibos?usuario_id=${uid}`)
-      const h = await fetch(`/api/horarios?usuario_id=${uid}`)
       const a = await fetch(`/api/avisos?usuarioId=${uid}`)
       const rj = await r.json()
-      const hj = await h.json()
       const aj = await a.json()
       setRecibos(rj.recibos || [])
-      setHorarios(hj.horarios || [])
       setAvisos(aj.avisos || [])
     } catch {}
   }
@@ -116,7 +111,7 @@ export default function ChoferesApp() {
 
       <div className="max-w-4xl mx-auto px-4 py-6">
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-1 gap-4 mb-6">
           <div className="bg-white rounded-xl p-4 shadow-sm">
             <div className="flex items-center">
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
@@ -127,19 +122,6 @@ export default function ChoferesApp() {
               <div className="ml-3">
                 <p className="text-2xl font-bold text-gray-900">{recibos.length}</p>
                 <p className="text-sm text-gray-600">Recibos</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-xl p-4 shadow-sm">
-            <div className="flex items-center">
-              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/>
-                </svg>
-              </div>
-              <div className="ml-3">
-                <p className="text-2xl font-bold text-gray-900">{horarios.length}</p>
-                <p className="text-sm text-gray-600">Horarios</p>
               </div>
             </div>
           </div>
@@ -217,49 +199,6 @@ export default function ChoferesApp() {
                   <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
                 </svg>
                 <p className="text-gray-500">No hay recibos disponibles</p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Sección Horarios */}
-        <div className="bg-white rounded-xl shadow-sm mb-6">
-          <div className="p-4 border-b border-gray-100">
-            <h2 className="text-lg font-semibold text-gray-900 flex items-center">
-              <svg className="w-5 h-5 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/>
-              </svg>
-              Mis Horarios de Trabajo
-            </h2>
-          </div>
-          <div className="p-4">
-            {horarios.length > 0 ? (
-              <div className="space-y-3">
-                {horarios.map((horario) => (
-                  <div key={horario.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div className="flex-1">
-                      <p className="font-medium text-gray-900">{horario.nombre_archivo}</p>
-                      <p className="text-sm text-gray-600">{formatDate(horario.fecha_subida)}</p>
-                    </div>
-                    <a
-                      href={`/api/horarios?download_id=${horario.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors"
-                    >
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
-                      </svg>
-                    </a>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8">
-                <svg className="w-12 h-12 text-gray-300 mx-auto mb-3" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/>
-                </svg>
-                <p className="text-gray-500">No hay horarios disponibles</p>
               </div>
             )}
           </div>

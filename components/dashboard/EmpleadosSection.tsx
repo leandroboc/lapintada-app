@@ -11,6 +11,26 @@ interface Empleado {
   fecha_modificacion?: string
 }
 
+const DEFAULT_PASSWORD = 'LpEvento2026'
+
+const onlyDigits = (value: string) => value.replace(/\D/g, '').slice(0, 8)
+
+const formatDni = (value: string) => {
+  const digits = onlyDigits(value)
+  if (digits.length <= 2) return digits
+  if (digits.length <= 5) return `${digits.slice(0, 2)}.${digits.slice(2)}`
+  return `${digits.slice(0, 2)}.${digits.slice(2, 5)}.${digits.slice(5)}`
+}
+
+const generateSecurePassword = () => {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789'
+  let password = ''
+  for (let i = 0; i < 12; i += 1) {
+    password += chars[Math.floor(Math.random() * chars.length)]
+  }
+  return password
+}
+
 export default function EmpleadosSection() {
   const { token } = useAuth()
   const [empleados, setEmpleados] = useState<Empleado[]>([])
@@ -18,12 +38,13 @@ export default function EmpleadosSection() {
   const [formData, setFormData] = useState({
     nombre: '',
     dni: '',
-    password: ''
+    password: DEFAULT_PASSWORD
   })
   const [searchTerm, setSearchTerm] = useState('')
   const [showSuccess, setShowSuccess] = useState('')
   const [showError, setShowError] = useState('')
-  const [passwordCount, setPasswordCount] = useState(0)
+  const [passwordCount, setPasswordCount] = useState(DEFAULT_PASSWORD.length)
+  const [showPassword, setShowPassword] = useState(false)
   const [editingId, setEditingId] = useState<number | null>(null)
   const [editNombre, setEditNombre] = useState('')
   const [editDni, setEditDni] = useState('')
@@ -58,6 +79,19 @@ export default function EmpleadosSection() {
     setLoading(true)
     setShowSuccess('')
     setShowError('')
+    const dniLimpio = onlyDigits(formData.dni)
+
+    if (dniLimpio.length !== 8) {
+      setShowError('El DNI debe tener formato xx.xxx.xxx')
+      setLoading(false)
+      return
+    }
+
+    if (!/^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(formData.password)) {
+      setShowError('La contraseña debe tener letras, al menos 1 número y mínimo 8 caracteres')
+      setLoading(false)
+      return
+    }
 
     try {
       const response = await fetch('/api/empleados', {
@@ -66,15 +100,18 @@ export default function EmpleadosSection() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          dni: dniLimpio,
+        }),
       })
 
       const data = await response.json()
 
       if (response.ok) {
         setShowSuccess('Empleado creado exitosamente')
-        setFormData({ nombre: '', dni: '', password: '' })
-        setPasswordCount(0)
+        setFormData({ nombre: '', dni: '', password: DEFAULT_PASSWORD })
+        setPasswordCount(DEFAULT_PASSWORD.length)
         fetchEmpleados()
       } else {
         setShowError(data.error || 'Error al crear empleado')
@@ -87,7 +124,7 @@ export default function EmpleadosSection() {
   }
 
   const handleResetPassword = async (dni: string) => {
-    if (confirm(`¿Resetear contraseña del empleado con DNI ${dni} a "123456"?`)) {
+    if (confirm(`¿Resetear contraseña del empleado con DNI ${dni} a "${DEFAULT_PASSWORD}"?`)) {
       try {
         const response = await fetch('/api/empleados/reset-password', {
           method: 'POST',
@@ -95,7 +132,7 @@ export default function EmpleadosSection() {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
           },
-          body: JSON.stringify({ dni }),
+          body: JSON.stringify({ dni, password: DEFAULT_PASSWORD }),
         })
 
         if (response.ok) {
@@ -115,6 +152,13 @@ export default function EmpleadosSection() {
         setShowError('Error de conexión')
       }
     }
+  }
+
+  const handleGeneratePassword = () => {
+    const password = generateSecurePassword()
+    setFormData((prev) => ({ ...prev, password }))
+    setPasswordCount(password.length)
+    setShowPassword(true)
   }
 
   const filteredEmpleados = empleados.filter(emp =>
@@ -225,7 +269,7 @@ export default function EmpleadosSection() {
       )}
 
       {/* Create Employee Form */}
-      <form onSubmit={handleCreateEmpleado} className="mb-8">
+      <form onSubmit={handleCreateEmpleado} className="mb-8" autoComplete="off">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -237,6 +281,8 @@ export default function EmpleadosSection() {
               onChange={(e) => setFormData({...formData, nombre: e.target.value})}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-libertador-blue focus:border-transparent"
               placeholder="Ej: Juan Pérez"
+              autoComplete="off"
+              name="nombre_empleado"
               required
             />
           </div>
@@ -247,12 +293,15 @@ export default function EmpleadosSection() {
             <input
               type="text"
               value={formData.dni}
-              onChange={(e) => setFormData({...formData, dni: e.target.value})}
+              onChange={(e) => setFormData({...formData, dni: formatDni(e.target.value)})}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-libertador-blue focus:border-transparent"
-              placeholder="Ej: 12345678"
-              maxLength={8}
-              pattern="[0-9]{8}"
-              title="DNI debe tener exactamente 8 dígitos"
+              placeholder="Ej: 12.345.678"
+              maxLength={10}
+              pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}"
+              title="DNI debe tener formato xx.xxx.xxx"
+              inputMode="numeric"
+              autoComplete="off"
+              name="dni_empleado"
               required
             />
           </div>
@@ -262,17 +311,36 @@ export default function EmpleadosSection() {
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             <i className="fas fa-lock mr-2"></i>Contraseña ({passwordCount} caracteres)
           </label>
-          <input
-            type="password"
-            value={formData.password}
-            onChange={(e) => {
-              setFormData({...formData, password: e.target.value})
-              setPasswordCount(e.target.value.length)
-            }}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-libertador-blue focus:border-transparent"
-            placeholder="Contraseña segura"
-            required
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={formData.password}
+              onChange={(e) => {
+                setFormData({...formData, password: e.target.value})
+                setPasswordCount(e.target.value.length)
+              }}
+              className="w-full px-4 py-3 pr-40 border border-gray-300 rounded-lg focus:ring-2 focus:ring-libertador-blue focus:border-transparent"
+              placeholder="Contraseña segura"
+              autoComplete="new-password"
+              name="password_empleado"
+              required
+            />
+            <button
+              type="button"
+              onClick={handleGeneratePassword}
+              className="absolute right-20 top-1/2 -translate-y-1/2 text-[#6f5a4e] hover:text-[#b88b5a] transition-colors"
+            >
+              Generar
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6f5a4e] hover:text-[#b88b5a] transition-colors"
+            >
+              {showPassword ? 'Ocultar' : 'Ver'}
+            </button>
+          </div>
+          <p className="text-xs text-gray-500 mt-2">Sugerida: {DEFAULT_PASSWORD} (letras + número)</p>
         </div>
 
         <button
@@ -380,7 +448,7 @@ export default function EmpleadosSection() {
                                 'Content-Type': 'application/json',
                                 'Authorization': `Bearer ${token}`,
                               },
-                              body: JSON.stringify({ id: empleado.id, nombre: editNombre, dni: editDni }),
+                              body: JSON.stringify({ id: empleado.id, nombre: editNombre, dni: onlyDigits(editDni) }),
                             })
                             const data = await response.json()
                             if (response.ok) {

@@ -101,8 +101,15 @@ export default function EmpleadosSection() {
         if (response.ok) {
           setShowSuccess('Contraseña reseteada exitosamente')
         } else {
-          const data = await response.json()
-          setShowError(data.error || 'Error al resetear contraseña')
+          let errorMessage = 'Error al resetear contraseña'
+          try {
+            const data = await response.json()
+            errorMessage = data?.error || errorMessage
+          } catch {
+            const raw = await response.text()
+            if (raw) errorMessage = raw
+          }
+          setShowError(errorMessage)
         }
       } catch {
         setShowError('Error de conexión')
@@ -172,7 +179,6 @@ export default function EmpleadosSection() {
                 <ul className="list-disc list-inside text-red-700 text-sm mt-2 space-y-1">
                   <li>Se eliminará el usuario permanentemente.</li>
                   <li>Se borrarán TODOS sus recibos de sueldo.</li>
-                  <li>Se borrarán TODOS sus horarios asignados.</li>
                   <li><strong>NO SE PUEDE DESHACER.</strong></li>
                 </ul>
               </div>

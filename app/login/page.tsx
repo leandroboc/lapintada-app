@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useAuth } from '../../context/AuthContext'
@@ -11,7 +11,41 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [formNonce, setFormNonce] = useState(0)
+  const [hasInteracted, setHasInteracted] = useState(false)
+  const usuarioRef = useRef<HTMLInputElement | null>(null)
+  const passwordRef = useRef<HTMLInputElement | null>(null)
   const { login } = useAuth()
+
+  useEffect(() => {
+    setUsuario('')
+    setPassword('')
+    setFormNonce(Date.now())
+  }, [])
+
+  useEffect(() => {
+    const clearInputs = () => {
+      if (hasInteracted) return
+      setUsuario('')
+      setPassword('')
+      if (usuarioRef.current) usuarioRef.current.value = ''
+      if (passwordRef.current) passwordRef.current.value = ''
+    }
+
+    clearInputs()
+    const timerA = window.setTimeout(clearInputs, 60)
+    const timerB = window.setTimeout(clearInputs, 300)
+    const timerC = window.setTimeout(clearInputs, 900)
+    const onPageShow = () => clearInputs()
+    window.addEventListener('pageshow', onPageShow)
+
+    return () => {
+      window.clearTimeout(timerA)
+      window.clearTimeout(timerB)
+      window.clearTimeout(timerC)
+      window.removeEventListener('pageshow', onPageShow)
+    }
+  }, [hasInteracted, formNonce])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -77,22 +111,29 @@ export default function LoginPage() {
               </div>
             )}
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-6" onSubmit={handleSubmit} autoComplete="off">
+              <input type="text" name="fake_user" autoComplete="username" className="hidden" tabIndex={-1} />
+              <input type="password" name="fake_pass" autoComplete="current-password" className="hidden" tabIndex={-1} />
               <div>
                 <label htmlFor="usuario" className="block text-sm font-semibold text-gray-700 mb-2">
                   Email o DNI
                 </label>
                 <input
+                  key={`usuario-${formNonce}`}
                   id="usuario"
-                  name="usuario"
+                  name="login_usuario_lp"
                   type="text"
                   value={usuario}
                   onChange={(e) => {
+                    setHasInteracted(true)
                     setUsuario(e.target.value)
                     if (error) setError('')
                   }}
+                  onFocus={() => setHasInteracted(true)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-libertador-blue focus:border-transparent transition-colors"
                   placeholder="Ingresa tu email o DNI"
+                  autoComplete="off"
+                  ref={usuarioRef}
                 />
               </div>
 
@@ -102,16 +143,21 @@ export default function LoginPage() {
                 </label>
                 <div className="relative">
                   <input
+                    key={`password-${formNonce}`}
                     id="password"
-                    name="password"
+                    name="login_password_lp"
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => {
+                      setHasInteracted(true)
                       setPassword(e.target.value)
                       if (error) setError('')
                     }}
+                    onFocus={() => setHasInteracted(true)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-libertador-blue focus:border-transparent transition-colors pr-12"
                     placeholder="Ingresa tu contraseña"
+                    autoComplete="new-password"
+                    ref={passwordRef}
                   />
                   <button
                     type="button"

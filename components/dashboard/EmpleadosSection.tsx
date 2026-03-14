@@ -45,6 +45,7 @@ export default function EmpleadosSection() {
   const [showError, setShowError] = useState('')
   const [passwordCount, setPasswordCount] = useState(DEFAULT_PASSWORD.length)
   const [showPassword, setShowPassword] = useState(false)
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [editingId, setEditingId] = useState<number | null>(null)
   const [editNombre, setEditNombre] = useState('')
   const [editDni, setEditDni] = useState('')
@@ -161,10 +162,15 @@ export default function EmpleadosSection() {
     setShowPassword(true)
   }
 
-  const filteredEmpleados = empleados.filter(emp =>
-    emp.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    emp.dni.includes(searchTerm)
-  )
+  const filteredEmpleados = empleados
+    .filter(emp =>
+      emp.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      emp.dni.includes(searchTerm)
+    )
+    .sort((a, b) => {
+      const cmp = a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' })
+      return sortOrder === 'asc' ? cmp : -cmp
+    })
 
   const handleDelete = async () => {
     if (!deleteModal.empleado) return
@@ -364,14 +370,21 @@ export default function EmpleadosSection() {
       </form>
 
       {/* Search Box */}
-      <div className="mb-6">
+      <div className="mb-6 flex flex-col md:flex-row gap-3">
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-libertador-blue focus:border-transparent"
+          className="w-full md:flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-libertador-blue focus:border-transparent"
           placeholder="Buscar empleados por nombre o DNI..."
         />
+        <button
+          type="button"
+          onClick={() => setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'))}
+          className="px-4 py-3 border border-gray-300 rounded-lg text-[#5f4b3e] hover:border-[#b88b5a] hover:text-[#b88b5a] transition-colors font-semibold"
+        >
+          Orden {sortOrder === 'asc' ? 'A→Z' : 'Z→A'}
+        </button>
       </div>
 
       {/* Empleados List */}
@@ -380,10 +393,7 @@ export default function EmpleadosSection() {
           <thead className="bg-libertador-blue text-white">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                <i className="fas fa-hashtag mr-2"></i>ID
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                <i className="fas fa-user mr-2"></i>Nombre
+                <i className="fas fa-user mr-2"></i>Nombre y Apellido
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                 <i className="fas fa-id-card mr-2"></i>DNI
@@ -403,7 +413,6 @@ export default function EmpleadosSection() {
             {filteredEmpleados.length > 0 ? (
               filteredEmpleados.map((empleado) => (
                 <tr key={empleado.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{empleado.id}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {editingId === empleado.id ? (
                       <input
@@ -501,7 +510,7 @@ export default function EmpleadosSection() {
               ))
             ) : (
               <tr>
-                <td colSpan={4} className="px-6 py-8 text-center text-gray-500">
+                <td colSpan={5} className="px-6 py-8 text-center text-gray-500">
                   <i className="fas fa-users fa-3x mb-4 block text-gray-300"></i>
                   {searchTerm ? 'No se encontraron empleados' : 'No hay empleados registrados'}
                 </td>
